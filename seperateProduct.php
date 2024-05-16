@@ -129,12 +129,12 @@
     </style>
 </head>
 
-<body>
+<body class="min-h-screen">
 
 <?php  require ("Partials/header.php");?>
 <?php
 
-//..................get seoerate id from url.......................//
+//..................get seperate id from url.......................//
 
 $id=$_GET['id'];
 //...............Connect Db and use query..................................//
@@ -142,8 +142,9 @@ $config = require "./Connect Db/Config.php";
 
 require("Connect Db/ConnectDb.php");
 $db = new ConnectDb($config);
-$getData = $db->setQuery("SELECT * FROM products WHERE id={$id}");
+require 'searchbar.php';
 $getData=$getData->fetch_assoc();
+
 
 //..............Get img product img in the db..............///
 $imageData = $getData['image'];
@@ -157,7 +158,7 @@ $base64Image = base64_encode($imageData);
     </div>
     <div class="product-details">
         <h2></h2>
-        <img src="data:image/jpeg;base64,<?php echo $base64Image; ?>" alt="">
+        <img src="data:image/png;base64,<?php echo $base64Image; ?>" alt="">
         <h1 class="">Name:<?php echo $getData['name']; ?></h1>
         <p class="">Price:<?php echo $getData['price']; ?></p>
         <p class="">Description:<?php echo $getData['description']; ?></p>

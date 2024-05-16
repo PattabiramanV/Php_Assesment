@@ -2,7 +2,7 @@
 <?php
 
     class ConnectDb{
-     public $dbConnect;
+//     public $dbConnect;
         public  function __construct($config)
         {
 //            print_r($config["servername"],);

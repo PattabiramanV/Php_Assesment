@@ -61,10 +61,15 @@
 
     </style>
 </head>
-<body>
+<body class="min-h-screen">
 
 <?php  require ("Partials/header.php");?>
+
+
+
 <?php
+
+
 $config = require "./Connect Db/Config.php";
 require("Connect Db/ConnectDb.php");
 $db = new ConnectDb($config);

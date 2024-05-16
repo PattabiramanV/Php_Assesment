@@ -64,6 +64,8 @@
 <body>
 
 <?php  require ("Partials/header.php");?>
+
+
 <?php
 $config = require "./Connect Db/Config.php";
 require("Connect Db/ConnectDb.php");
@@ -130,5 +132,33 @@ $getData = $db->setQuery("SELECT * FROM users JOIN blogs ON users.id = blogs.use
 
 
 <?php  require ("Partials/footer.php");?>
+
+<?php
+// Define the mapping of clean URLs to PHP files
+$routes = array(
+    '/' => 'index.php',
+    '/blogsAll' => 'blogsAll.php',
+    '/contact' => 'contact.php'
+);
+
+// Extract the requested URL
+$request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+// If the requested URL doesn't end with a slash and it's not a file
+if ($request_uri !== '/' && file_exists(__DIR__ . $request_uri) && !is_dir(__DIR__ . $request_uri)) {
+    // Serve the requested file directly
+    return false;
+}
+
+// If the requested URL exists in the routes array
+if (array_key_exists($request_uri, $routes)) {
+    // Include the corresponding PHP file
+    include $routes[$request_uri];
+} else {
+    // Return a 404 error
+    http_response_code(404);
+    include '404.php';
+}
+?>
 </body>
 </html>

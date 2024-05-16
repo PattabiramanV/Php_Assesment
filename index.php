@@ -50,7 +50,7 @@
 <body>
 
 
-<?php  require ("./Partials/header.php");?>
+<?php  require ("./Partials/header.php"); ?>
 
 <!----------------------Body Images------------------------------->
 
@@ -60,11 +60,36 @@
 
 <!--------------------------------Footer----->
 <?php require("./Partials/footer.php");?>
-<!--<script>-->
-<!--    function productFun(){-->
-<!--        alert("hi");-->
-<!--        location.href='./productAll.php';-->
-<!--    }-->
-<!--</script>-->
+<?php
+if(!empty($_GET)){
+    print_r($_GET);
+}
+//require ("./router.php");
+?>
+
+<?php
+//$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+//$host = $_SERVER['HTTP_HOST'];
+//$uri = $_SERVER['REQUEST_URI'];
+//
+//$url = "$protocol://$host$uri";
+//
+//echo $url;
+?>
+<?php
+define('CUSTOM_HOST', 'localhost://vasthira.com');
+
+// Example usage:
+$page = 'about.php'; // Example page
+$url = CUSTOM_HOST . '/' . $page;
+
+echo $url; // Outputs: localhost://vasthira.com/about.php
+?>
+
+
+
+
+
+
 </body>
 </html>
